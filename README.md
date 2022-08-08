@@ -1,9 +1,10 @@
-# Cardano Plutus Pioneers Playground Start-up Steps for macOS Intel i7
-By: Christophe Garant, Updated: 2022 Jan 23
+# Plutus Playground Setup for macOS: An All-In-One Guide for Intel and M1 Macs
+Originally composed by: Christophe Garant, Updated: 2022 Jan 23
+Recently modified by: Aaron Prunty, 2022 Aug 08
 
-## Computer Specs
-- Macbook Pro 2015, macOS Monterey (v12.1), Intel Quad Core i7
-- git checkout 41149926c108c71831cfe8d244c83b0ee4bf5c8a (Week of Jan 17 2022)
+## These instructions have been tested on the following Mac specs
+- (Christophe) Macbook Pro 2015, macOS Monterey (v12.1), Intel Quad Core i7
+- (Aaron) Macbook Pro 2013, macOS Catalina (v10.15.7), Intel Quad Core i7
 
 ## Setup & Weekly Workflow for Homework Code
 1. Git clone the plutus 1) pioneer program repository 2) plutus and 3) plutus-apps
