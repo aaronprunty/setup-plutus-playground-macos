@@ -1,4 +1,4 @@
-# Set Up Plutus Playground for macOS: A Step-by-Step Guide for Intel and M1 Macs
+# Set Up Plutus Playground on macOS: A Step-by-Step Guide for Intel and M1 Macs
 Originally composed by: Christophe Garant, Updated: 2022 Jan 23
 Recently modified by: Aaron Prunty, 2022 Aug 08
 
@@ -6,32 +6,24 @@ Recently modified by: Aaron Prunty, 2022 Aug 08
 - Christophe: Macbook Pro 2015, macOS Monterey (v12.1), Intel Quad Core i7
 - Aaron: Macbook Pro 2013, macOS Catalina (v10.15.7), Intel Quad Core i7
 
-## Setup & Weekly Workflow for Homework Code
-1. Git clone the plutus 1) pioneer program repository 2) plutus and 3) plutus-apps
- repositories (copy the github to your local machine).  
-
-    `git clone https://github.com/input-output-hk/plutus-pioneer-program.git`
+## Setup the required plutus and plutus-apps repositories
+1. Clone the 1) plutus and 2) plutus-apps repositories to your local machine (yes, you need both!):  
     
     `git clone https://github.com/input-output-hk/plutus.git`
     
     `git clone https://github.com/input-output-hk/plutus-apps.git`
-
-2. Checkout the git commit version of the week in `plutus-pioneers-program` by going to the /code/week#/cabal.project file
-    - open the cabal.project file of the week
-	- look for "https://github.com/input-output-hk/plutus-apps.git"
-	- copy git commit tag # (e.g. 41149926c108c71831cfe8d244c83b0ee4bf5c8a for week 1 cohort 3)
 	
-3. In local terminal, cd to the ~/plutus-apps directory
+2. In local terminal, cd to the ~/plutus-apps directory
 
     `cd ~/plutus-apps`
 
-4. Checkout the latest git version to local
+3. Checkout the latest git version to local
 
     `git checkout <paste-tag-here>`
 
     e.g. git checkout 41149926c108c71831cfe8d244c83b0ee4bf5c8a
 
-5. Update and build code with cabal. In ~/plutus-apps directory
+. Update and build code with cabal. In ~/plutus-apps directory
 
     `cabal update`
     
@@ -250,9 +242,14 @@ and blood trail of Cardano Stack Exchange questions opened, as well as help from
 
 
 ## Contact Info
+### Christophe Garant
 - github: [ccgarant](https://github.com/ccgarant)
-- twitter: [@TheStophe](https://twitter.com/TheStophe)
+- cardano stack exchange: [ccgarant](https://cardano.stackexchange.com/users/4012/ccgarant)
 - discord: ccgarant#8489
-- cardano stack exchange: [ccgarant](https://cardano.stackexchange.com/users/4012/ccgarant) 
 - Bitcoin & Cardano, since 2017; Ergo since 2020
 - Plutus Pioneers Program, Cohort 3 (Jan 2022)
+
+### Aaron Prunty
+- github: [aaronprunty] (https://github.com/aaronprunty)
+- cardano stack exchange: [mrscatterbrain](https://cardano.stackexchange.com/users/6780/mrscatterbrain)
+
