@@ -66,6 +66,9 @@ however Nix documentation and others in Cardano Stack Exchange (CSE) claim this 
 		extra-sandbox-paths = /System/Library/Frameworks /System/Library/PrivateFrameworks /usr/lib /private/tmp /private/var/tmp /usr/bin/env
 		experimental-features = nix-command
 		extra-experimental-features = flakes
+    
+According to this post (https://cardano.stackexchange.com/questions/6700/macos-monterey-i7-what-is-the-best-nix-conf-file-to-use), it may not be necessary to include the iohk.chachix.org substituter and corresponding trusted-public-key. Someone with enough patience should test this.
+    
     Ref: (this took a lot of research and investigation to get this right)
     - [CSE: Recommendation to have sandbox=false](https://cardano.stackexchange.com/a/6745/4012)
     - [macOS Monterey i7, what is the best `nix.conf` file to use?](https://cardano.stackexchange.com/questions/6700/macos-monterey-i7-what-is-the-best-nix-conf-file-to-use)
