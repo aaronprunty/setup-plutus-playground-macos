@@ -1,4 +1,4 @@
-# Set Up Plutus Playground for macOS: An Step-by-Step Guide for Intel and M1 Macs
+# Set Up Plutus Playground for macOS: A Step-by-Step Guide for Intel and M1 Macs
 Originally composed by: Christophe Garant, Updated: 2022 Jan 23
 Recently modified by: Aaron Prunty, 2022 Aug 08
 
