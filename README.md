@@ -110,7 +110,7 @@ nix (Nix) 2.10.3
 ```
 
 ## Building the Plutus Playground Server and Client
-You're going to want to grab a cup of coffee for this one, folks. The initial build and setup of for the `plutus-playground-server` takes at least an hour to complete, and slightly less time for the `plutus-playground-client`. Ready? Here we go...
+You're going to want to grab a cup of coffee for this one, folks. The initial build and setup of for the `nix-shell` needed for the `plutus-playground-server` and `plutus-playground-client` takes at least an hour to complete. Ready? Here we go...
 
 Change to the `plutus-apps/` directory:
 ```
@@ -135,7 +135,7 @@ Next, we build the plutus playground server and client. This will take 10's of m
 $ nix-build -A plutus-playground.server -A plutus-playground.client
 ```
 
-Once the initial nix build is finished, we will fire up the nix-shell. This is the step that will likely take more than an hour to finish, but will be much quicker the next time we launch the nix-shell. The nix-shell is the "Haskell requirements environment". Enter the command below and enjoy that cup of coffee:
+Once the initial nix build is finished, we will fire up the `nix-shell`. This is the step that will likely take more than an hour to finish, but will be much quicker the next time we launch the nix-shell. The nix-shell is the "Haskell requirements environment". Enter the command below and enjoy that cup of coffee:
 ```
 $ nix-shell
 ```
@@ -183,61 +183,61 @@ $ sudo GC_DONT_GC=1 npm install -g npm
 _Note: Must include GC_DONT_GC=1 
 [CSE: Unable to start /plutus-apps client application](https://cardano.stackexchange.com/questions/6320/unable-to-start-plutus-apps-client-application)_
 
-13. Configure and start localhost in browser
+Almost there!
 
-14. Open localhost tab in browser
+We next need to configure the `localhost` settings in the `webpack.config.js` file in the `plutus-playground-client` directory. Change into this directory and let's edit that file:
+```
+$ cd plutus-playground-client
+```
 
-    [http://localhoust:8009/](http://localhost:8009/)
-    
-	Note: http not http**s**, https was blocked by proxy firewall
+With your favorite text editor, open the `webpack.config.js` file, search for `devServer`, and update the following parameters:
+- https to 'false'
+- host to '0.0.0.0'
+- in API target, make "http" not "https"
+- add extra "timeout" line
 
-15. Configure localhost config.js file 
-
-	Change directories to plutus, and edit webpack.config.js file
-	
-	`cd /plutus-apps/plutus-playground-client`
-	
-	Open `webpack.config.js` in text editor, search for `devServer`, and update the following:
-    - https to 'false', host to '0.0.0.0', in API target, make "http" not "https", add extra "timeout" line
-	
-            module.exports = {
-            devtool,
-            devServer: {
-                contentBase: path.join(__dirname, "dist"),
-                compress: true,
-                port: 8009,
-                host: '0.0.0.0',
-                https: false,
-                stats: "errors-warnings",
-                proxy: {
-                    "/api": {
-                            target: "http://localhost:8080",
-                            timeout: 1000 * 60 * 10
-                    },
-                },
+In sum, the `devServer` parameters should look like this:
+```
+module.exports = {
+    devtool,
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8009,
+        host: '0.0.0.0',
+        https: false,
+        stats: "errors-warnings",
+        proxy: {
+            "/api": {
+                target: "http://localhost:8080",
+                timeout: 1000 * 60 * 10,
             },
-	
-	`Save file`
-		
-	_Note: This is needed to connect client to server with enough timeout buffer,
-	and configure localhost config file such that the playground can run without firewall blocking it, 
-	from my understanding._
-	
-	Ref:
-	- Http and localhost edits [CSE: @prodineeritecht comment to Playground client can't connect to playground server (all localhost)](https://cardano.stackexchange.com/a/6329/4012)
-	- Add timeout [CSE: @Frank DelPidio comment to Plutus Pioneer Program - Problem with plutus playground client](https://cardano.stackexchange.com/a/1992/4012)
+        },
+    },
+```
 
-16. start client node server
+Save and close the file.
+_Note: This is needed to connect client to server with enough timeout buffer, and configure localhost config file such that the playground can run without firewall blocking it, from my understanding._
 
-	`cd plutus-playground-client`
-	
-	`GC_DONT_GC=1 npm run start`
-	
-	_Note: before just used `npm run start`, but local host did not show up.  When in doubt, GC_DONT_GC_
-		
-17. Plutus playground should come up in local host, after advancing thru Safety warnings in browser. 
-Compile should work. Cheers.
+Ref:
+- Http and localhost edits [CSE: @prodineeritecht comment to Playground client can't connect to playground server (all localhost)](https://cardano.stackexchange.com/a/6329/4012)
+- Add timeout [CSE: @Frank DelPidio comment to Plutus Pioneer Program - Problem with plutus playground client](https://cardano.stackexchange.com/a/1992/4012)
 
+Finally, let's start client node server! In the nix-shell inside the `plutus-playground-client` directory, enter:
+```
+GC_DONT_GC=1 npm run start
+```
+_Note: before, we tried to use just `npm run start`, but the local host did not work. When in doubt, GC_DONT_GC_=1
+
+Next, open up a new tab or window in your browser and enter the following link:
+
+[http://localhoust:8009/](http://localhost:8009/)
+
+_Note: we're using http here--not http**s**! https was blocked by proxy firewall_
+
+Plutus playground should appear in your browser (local host)
+
+Cheers!
 
 ## Diary of Troubleshooting
 Herein is a diary play-by-play of my failed attempts, troubleshooting, 
