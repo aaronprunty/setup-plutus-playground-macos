@@ -49,11 +49,11 @@ Now, here is the correct way to set up Nix on macOS to run Plutus Playground:
 ```
 $ sh <(curl -L https://nixos.org/nix/install)
 ```
-_Note: Most outdated tutorials say to add `--daemon` or `--darwin-use-unencrypted-nix-store-volume` because macOS has strict read-only rules at the system root level; however official Nix documentation and others on Cardano Stack Exchange (CSE) claim this is fixed, and no longer needed._
+_Note: Most outdated tutorials say to add `--daemon` or `--darwin-use-unencrypted-nix-store-volume`; however official Nix documentation and others on Cardano Stack Exchange (CSE) claim this is no longer needed._
 
 2. **Restart your computer!!! (yes, again)**
 
-3. Next, we need to edit the `/etc/nix/nix.conf` file using administrator priveleges. You can do this using your favorite text editor (eg, `sudo nano /etc/nix/nix.conf` or `sudo vim /etc/nix/nix.conf`. However, *be careful* to consider which processor your Mac is using. Choose one of the nix.conf file contents and below and copy-and-paste it into your `/etc/nix/nix.conf` file:
+3. Next, we need to edit the `/etc/nix/nix.conf` file using administrator priveleges. You can do this using your favorite text editor (eg, `sudo nano /etc/nix/nix.conf` or `sudo vim /etc/nix/nix.conf`. However, *be careful* to consider which processor your Mac is using. Choose one of the nix.conf file contents below and copy-and-paste them into your `/etc/nix/nix.conf` file:
 
  **If you are running an Intel Mac, use this version:**
 ```
