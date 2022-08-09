@@ -145,7 +145,7 @@ When the nix-shell has finished and launched, your terminal prompt should change
 $ cd plutus-playground-server
 ```
 ```
-GC_DONT_GC=1 plutus-playground-server
+$ GC_DONT_GC=1 plutus-playground-server
 ```
 _Note: without GC_DONT_GC=1, it seems the playground won't compile (will post "error cannot find module")_
 
@@ -223,7 +223,7 @@ Ref:
 
 Finally, let's start the Plutus Playground Client! In the nix-shell inside the `plutus-playground-client` directory, enter:
 ```
-GC_DONT_GC=1 npm run start
+$ GC_DONT_GC=1 npm run start
 ```
 _Note: before, we tried to use just `npm run start`, but the local host did not work. When in doubt, GC_DONT_GC_=1
 
