@@ -45,7 +45,7 @@ However, if you already have Nix installed on your Mac because this is your 100t
 **Once you have completed the uninstall instructions from Nix.org, restart your Mac!!!**
 
 Now, here is the correct way to set up Nix on macOS to run Plutus Playground:
-1. Install per [Nix documenation for macOS](https://nixos.org/download.html#nix-install-macos)
+1. Install Nix per the [Nix documentation for macOS](https://nixos.org/download.html#nix-install-macos)
 ```
 $ sh <(curl -L https://nixos.org/nix/install)
 ```
