@@ -165,9 +165,7 @@ Warning: JWT_SIGNATURE not set
 Interpreter ready
 ```
 
-Next, we will start the Plutus Playground Client in a new terminal tab (or window). Hit (command+t) or (command+n) to open up a new terminal.
-
-Change into the `plutus-apps/` directory:
+Next, we will start the Plutus Playground Client in a new terminal tab (or window). Hit (command+t) or (command+n) to open up a new terminal and change into the `plutus-apps/` directory:
 ```
 $ cd $HOME/cardano-src/plutus-apps/
 ```
@@ -216,20 +214,26 @@ module.exports = {
     },
 ```
 
-Save and close the file.
+Now save and close the file.
 _Note: This is needed to connect client to server with enough timeout buffer, and configure localhost config file such that the playground can run without firewall blocking it, from my understanding._
 
 Ref:
 - Http and localhost edits [CSE: @prodineeritecht comment to Playground client can't connect to playground server (all localhost)](https://cardano.stackexchange.com/a/6329/4012)
 - Add timeout [CSE: @Frank DelPidio comment to Plutus Pioneer Program - Problem with plutus playground client](https://cardano.stackexchange.com/a/1992/4012)
 
-Finally, let's start client node server! In the nix-shell inside the `plutus-playground-client` directory, enter:
+Finally, let's start the Plutus Playground Client! In the nix-shell inside the `plutus-playground-client` directory, enter:
 ```
 GC_DONT_GC=1 npm run start
 ```
 _Note: before, we tried to use just `npm run start`, but the local host did not work. When in doubt, GC_DONT_GC_=1
 
-Next, open up a new tab or window in your browser and enter the following link:
+When the client is ready, you should see something like this:
+```
+webpack compiled with 1 warning
+ℹ ｢wdm｣: Compiled with warnings.
+```
+
+Now, open up a new tab or window in your browser and enter the following link:
 
 [http://localhoust:8009/](http://localhost:8009/)
 
