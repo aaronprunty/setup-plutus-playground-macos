@@ -40,7 +40,7 @@ $ cabal build
 ## Installing Nix (caution: here there be dragons...)
 If you already have Nix installed on your Mac because you're a Nix poweruser and you've used it to manage and build a bunch of packages, then you probably know what you're doing and can likely just skip ahead to editing the `/etc/nix/nix.conf` file on step 3 below.
 
-However, if you already have Nix installed on your Mac because this is your 100th attempt at installing Plutus Playground and you were told to install Nix along the way but the instructions were more hopeful than certain the outcome will work, then it's absolutely a good idea to wipe your Mac completely clean of Nix and do a fresh install. Follow [these instructions from Nix.org](https://nixos.org/manual/nix/stable/installation/installing-binary.html#macos) on how to remove Nix from your Mac.
+However, if you already have Nix installed on your Mac because this is your 100th attempt at installing Plutus Playground and you were told to install Nix along the way but the instructions were more hopeful than certain the outcome will work, then it's absolutely a good idea to wipe your Mac completely clean of Nix and do a fresh install. Follow [these instructions from Nix.org](https://nixos.org/manual/nix/stable/installation/installing-binary.html#macos) to remove Nix from your Mac.
 
 **Once you have completed the uninstall instructions from Nix.org, restart your Mac!!!**
 
