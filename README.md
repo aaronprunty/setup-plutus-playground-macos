@@ -10,31 +10,31 @@ Forked and modified by Aaron Prunty (2022 Aug 08)
 ## Set up the required plutus and plutus-apps repositories
 If you're reading these instructions to set up Plutus Playground, there's a good chance you already have a Cardano node up and running. So, you may have a directory called **$HOME/cardano-src/** that contains your [cardano-node](https://github.com/input-output-hk/cardano-node) installation. We will install Plutus Playground under **$HOME/cardano-src** as well so that all Cardano-related goodies are kept together:
 ```
-$ cd $HOME/cardano-src/
+cd $HOME/cardano-src/
 ```
 We need *both* [plutus](https://github.com/input-output-hk/plutus) and [plutus-apps](https://github.com/input-output-hk/plutus-apps) repositories for the Plutus Playground setup to go smoothly. So, we clone them to our local machine here using git:
 ```
-$ git clone https://github.com/input-output-hk/plutus.git
+git clone https://github.com/input-output-hk/plutus.git
 ```
 ```
-$ git clone https://github.com/input-output-hk/plutus-apps.git
+git clone https://github.com/input-output-hk/plutus-apps.git
 ```
 We will checkout a specific branch of plutus-apps used in the Plutus Pioneers Week 1 Cohort 3, and then update and build with *cabal*. It's important that we build with *cabal* now; otherwise our playground code won't compile later--instead, we will get a "module not found" error.
 
 In the terminal, change to the plutus-apps directory
 ```
-$ cd plutus-apps/
+cd plutus-apps/
 ```
 and then checkout the required branch:
 ```
-$ git checkout 41149926c108c71831cfe8d244c83b0ee4bf5c8a
+git checkout 41149926c108c71831cfe8d244c83b0ee4bf5c8a
 ```
 Finally, update and build code with cabal:
 ```
-$ cabal update
+cabal update
 ```
 ```
-$ cabal build
+cabal build
 ```
 
 ## Installing Nix (caution: here there be dragons...)
@@ -47,7 +47,7 @@ However, if you already have Nix installed on your Mac because this is your 100t
 Now, here is the correct way to set up Nix on macOS to run Plutus Playground:
 1. Install Nix per the [Nix documentation for macOS](https://nixos.org/download.html#nix-install-macos)
 ```
-$ sh <(curl -L https://nixos.org/nix/install)
+sh <(curl -L https://nixos.org/nix/install)
 ```
 _Note: Most outdated tutorials say to add `--daemon` or `--darwin-use-unencrypted-nix-store-volume`; however official Nix documentation and others on Cardano Stack Exchange (CSE) claim this is no longer needed._
 
@@ -97,6 +97,10 @@ Ref: (this took a lot of research and investigation to get this right)
 
 Still with us? As a sanity check, execute the following commands in your terminal and verify that Nix is installed correctly:
 ```
+nix doctor --verbose
+```
+This should produce the output:
+```
 $ nix doctor --verbose
 Running checks against store uri: daemon
 [PASS] PATH contains only one nix version.
@@ -104,6 +108,10 @@ Running checks against store uri: daemon
 [PASS] Client protocol matches store protocol.
 ```
 And verify the version:
+```
+nix --version
+```
+which should give:
 ```
 $ nix --version
 nix (Nix) 2.10.3
@@ -114,10 +122,14 @@ You're going to want to grab a cup of coffee for this one, folks. The initial bu
 
 Change to the `plutus-apps/` directory:
 ```
-$ cd $HOME/cardano-src/plutus-apps/
+cd $HOME/cardano-src/plutus-apps/
 ```
 
 Next, verify that git HEAD is pointing to the correct branch that we checked out earlier (the 'tag' of the head should be 41149926c):
+```
+git status
+```
+which gives the output:
 ```
 $ git status
 HEAD detached at 41149926c
@@ -132,20 +144,20 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 Next, we build the plutus playground server and client. This will take 10's of minutes to complete:
 ```
-$ nix-build -A plutus-playground.server -A plutus-playground.client
+nix-build -A plutus-playground.server -A plutus-playground.client
 ```
 
 Once the initial nix build is finished, we will fire up the `nix-shell`. This is the step that will likely take more than an hour to finish, but will be much quicker the next time we launch the nix-shell. The nix-shell is the "Haskell requirements environment". Enter the command below and enjoy that cup of coffee:
 ```
-$ nix-shell
+nix-shell
 ```
 
 When the nix-shell has finished and launched, your terminal prompt should change color to indicate the nix-shell is active. Within the nix-shell, we change into the `plutus-playground-server` directory and start the plutus server:
 ```
-$ cd plutus-playground-server
+cd plutus-playground-server
 ```
 ```
-$ GC_DONT_GC=1 plutus-playground-server
+GC_DONT_GC=1 plutus-playground-server
 ```
 _Note: without GC_DONT_GC=1, it seems the playground won't compile (will post "error cannot find module")_
 
@@ -167,16 +179,16 @@ Interpreter ready
 
 Next, we will start the Plutus Playground Client in a new terminal tab (or window). Hit (command+t) or (command+n) to open up a new terminal and change into the `plutus-apps/` directory:
 ```
-$ cd $HOME/cardano-src/plutus-apps/
+cd $HOME/cardano-src/plutus-apps/
 ```
 and then fire up another nix-shell (this should be faster!):
 ```
-$ nix-shell
+nix-shell
 ```
 
 Once the new nix-shell has launched, we need to update the `npm` dependancies:
 ```
-$ sudo GC_DONT_GC=1 npm install -g npm
+sudo GC_DONT_GC=1 npm install -g npm
 ```
 _Note: Must include GC_DONT_GC=1 
 [CSE: Unable to start /plutus-apps client application](https://cardano.stackexchange.com/questions/6320/unable-to-start-plutus-apps-client-application)_
@@ -185,7 +197,7 @@ Almost there!
 
 We next need to configure the `localhost` settings in the `webpack.config.js` file in the `plutus-playground-client` directory. Change into this directory and let's edit that file:
 ```
-$ cd plutus-playground-client
+cd plutus-playground-client
 ```
 
 With your favorite text editor, open the `webpack.config.js` file, search for `devServer`, and update the following parameters:
@@ -223,7 +235,7 @@ Ref:
 
 Finally, let's start the Plutus Playground Client! In the nix-shell inside the `plutus-playground-client` directory, enter:
 ```
-$ GC_DONT_GC=1 npm run start
+GC_DONT_GC=1 npm run start
 ```
 _Note: before, we tried to use just `npm run start`, but the local host did not work. When in doubt, GC_DONT_GC_=1
 
