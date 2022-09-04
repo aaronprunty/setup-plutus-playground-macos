@@ -59,8 +59,8 @@ _Note: Most outdated tutorials say to add `--daemon` or `--darwin-use-unencrypte
 ```
 build-users-group           = nixbld
 
-substituters                = https://hydra.iohk.io https://iohk.cachix.org https://cache.nixos.org/
-trusted-public-keys         = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO/nhblbov/8MW7Rqoo= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=volume
+substituters                = https://hydra.iohk.io https://cache.nixos.org/
+trusted-public-keys         = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=volume
 
 sandbox                     = false
 extra-sandbox-paths         = /System/Library/Frameworks /System/Library/PrivateFrameworks /usr/lib /private/tmp /private/var/tmp /usr/bin/env
@@ -72,8 +72,8 @@ extra-experimental-features = flakes
 ```
 build-users-group           = nixbld
 
-substituters                = https://hydra.iohk.io https://iohk.cachix.org https://cache.nixos.org/
-trusted-public-keys         = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO/nhblbov/8MW7Rqoo= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=volume
+substituters                = https://hydra.iohk.io https://cache.nixos.org/
+trusted-public-keys         = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=volume
 
 system                      = x86_64-darwin
 extra-platforms             = x86_64-darwin aarch64-darwin
@@ -86,7 +86,7 @@ extra-experimental-features = flakes
 ```
 Save and quit the editor to close the `/etc/nix/nix.conf` file.
     
-According to this [post](https://cardano.stackexchange.com/questions/6700/macos-monterey-i7-what-is-the-best-nix-conf-file-to-use) on Cardano Stack Exchange, it may no longer be necessary to include the `iohk.cachix.org` substituter and corresponding `trusted-public-key` in the `/etc/nix/nix.conf` file. Apparently, they are defunct or no longer updated, so they might be safe to omit. Someone with enough patience should test this.
+_Note: many older posts say that it's necessary to include in your `/etc/nix/nix.conf` file the `iohk.cachix.org` substitor and its corresponding `iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=` trusted-public-key. However, according to this [post on Cardano Stack Exchange](https://cardano.stackexchange.com/questions/6700/macos-monterey-i7-what-is-the-best-nix-conf-file-to-use), it may no longer be necessary to include these. Apparently, they are defunct or no longer updated, so they should be safe to omit. I have tested setting up nix and the Plutus Playground environment without the `iohk.chachix.org` binaries and can confirm that the set up was successful without them._
     
 Ref: (this took a lot of research and investigation to get this right)
 - [CSE: Recommendation to have sandbox=false](https://cardano.stackexchange.com/a/6745/4012)
