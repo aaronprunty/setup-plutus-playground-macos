@@ -86,7 +86,7 @@ extra-experimental-features = flakes
 ```
 Save and quit the editor to close the `/etc/nix/nix.conf` file.
     
-_Note: many older posts say that it's necessary to include in your `/etc/nix/nix.conf` file the `iohk.cachix.org` substitor and its corresponding `iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=` trusted-public-key. However, according to this [post on Cardano Stack Exchange](https://cardano.stackexchange.com/questions/6700/macos-monterey-i7-what-is-the-best-nix-conf-file-to-use), it may no longer be necessary to include these. Apparently, they are defunct or no longer updated, so they should be safe to omit. I have tested setting up nix and the Plutus Playground environment without the `iohk.chachix.org` binaries and can confirm that the set up was successful without them._
+_Note: many older posts say that it's necessary to include in your `/etc/nix/nix.conf` file the `iohk.cachix.org` substitutor and its corresponding `iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=` trusted-public-key. However, according to this [post on Cardano Stack Exchange](https://cardano.stackexchange.com/questions/6700/macos-monterey-i7-what-is-the-best-nix-conf-file-to-use), it may no longer be necessary to include these. Apparently, they are defunct or no longer updated, so they should be safe to omit. I have tested setting up nix and the Plutus Playground environment without the `iohk.chachix.org` binaries and can confirm that the set up was successful without them._
     
 Ref: (this took a lot of research and investigation to get this right)
 - [CSE: Recommendation to have sandbox=false](https://cardano.stackexchange.com/a/6745/4012)
