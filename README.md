@@ -111,10 +111,10 @@ And verify the version:
 ```
 nix --version
 ```
-which should give:
+which should give something like:
 ```
 $ nix --version
-nix (Nix) 2.10.3
+nix (Nix) 2.11.0
 ```
 
 ## Building the Plutus Playground Server and Client
